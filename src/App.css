@@ -1,38 +1,105 @@
+/* Classes */
+
+.dashboard-container {
+  width: 500px;
+  padding: 10px;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
+/* App-Header */
 .App-header {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #171f31;
+  color: #fff;
+}
+
+.header-data {
+  list-style-type: none;
+  background-color: #111b32;
+  text-align: center;
+  font-size: 1rem;
+  color: green;
+  font-family: monospace;
+  padding: 5px;
+  border: 2px solid #fff;
+}
+
+
+.App-content {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+#profile {
+  background-color: #111c32;
+  height: auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#profile .profile-card {
+  padding: 10px;
+  width: 450px;
+  margin: 0 auto;
+}
+
+#profile .profile-card h3 {
+  font-size: 1rem;
+}
+
+#profile .profile-card .profile-img-container {
+  width: 450px;
+  height: 300px;
+}
+
+#profile .profile-card .profile-img-container img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+#post-center {
+  background-color: #32112e;
+  height: auto;
+}
+
+/* Posts */
+#post-center .posts {
+  padding: 10px;
+  width: 400px;
+  margin: 0 auto;
+}
+
+/* Single-Post */
+#post-center .posts .post {
+  width: 100%;
+  border: 2px solid white;
+  margin: 20px 0;
+  padding: 5px;
+}
+
+#post-center .posts .post h3 {
+  font-size: .8rem;
+
+}
+
+#post-center .posts .post p {
+  font-size: 18px;
+  font-family: sans-serif;
+  text-align: justify;
+}
+
+
+
+#trending {
+  background-color: #322d11;
+  height: auto;
 }
