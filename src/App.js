@@ -55,7 +55,8 @@ function App() {
   };
 
   // Connect Wallet
-  const connectWallet = async () => {
+  const connectWallet = async (e) => {
+    e.preventDefault();
     try {
       const { ethereum } = window;
 
@@ -66,9 +67,8 @@ function App() {
       const accounts = await ethereum.request({
         method: "eth_requestAccounts",
       });
-      console.log(accounts[0]);
-
       setCurrentAccount(accounts[0]);
+      await reloadPost(ethereum);
     } catch (err) {
       console.log(err);
     }
@@ -153,9 +153,11 @@ function App() {
           <AppFooter />
         </div>
       ) : (
-        <div>
-          <h2>Hello World</h2>
-          <button onClick={connectWallet}>Connect Wallet</button>
+        <div className="page-404">
+          <div>
+            <h2>Hello World</h2>
+            <button onClick={connectWallet}>Connect Wallet</button>
+          </div>
         </div>
       )}
     </div>
