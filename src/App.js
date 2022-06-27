@@ -11,6 +11,8 @@ function App() {
   const [currentAccount, setCurrentAccount] = useState("");
   const [allPosts, setAllPosts] = useState([]);
   const [counter, setCounter] = useState(true);
+  const [totalNumberOfPosts, setTotalNumberOfPosts] = useState("");
+  const [singleTotalPosts, setSingleTotalPosts] = useState("");
   const contractAddress = "0x2554030E27cd0Ef0D056F0Dcb6915bB3658B6Bd4";
   const contractABI = abi.abi;
 
@@ -44,6 +46,8 @@ function App() {
         );
         let posts = await DeBlockContract.getAllPosts();
         setAllPosts(posts);
+
+        await reloadPost(ethereum);
       }
     } catch (err) {
       console.log(err);
@@ -102,7 +106,7 @@ function App() {
       console.log(err);
     }
   };
-
+  // Get all posts
   const reloadPost = async (ethereum) => {
     // Get all Posts
     const provider = new ethers.providers.Web3Provider(ethereum);
@@ -112,8 +116,17 @@ function App() {
       contractABI,
       signer
     );
+
     let posts = await DeBlockContract.getAllPosts();
     setAllPosts(posts);
+
+    let count = await DeBlockContract.PostCount();
+    // console.log("The post count", count.toString());
+    setTotalNumberOfPosts(count.toString());
+
+    let singlePost = await DeBlockContract.TopPoster(currentAccount);
+    // console.log("Single User post:", singlePost.toString());
+    setSingleTotalPosts(singlePost.toString());
   };
 
   useEffect(() => {
@@ -124,7 +137,11 @@ function App() {
     <div className="App">
       {currentAccount ? (
         <div>
-          <AppHeader _currentAccount={currentAccount} />
+          <AppHeader
+            _currentAccount={currentAccount}
+            _totalNumberOfPosts={totalNumberOfPosts}
+            _singleTotalPosts={singleTotalPosts}
+          />
 
           <AppContent
             _currentAccount={currentAccount}
